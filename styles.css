@@ -1,0 +1,196 @@
+:root {
+    --background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    --foreground: #222;
+    --accent-gradient: linear-gradient(45deg, #6a11cb, #2575fc);
+    --accent-solid: #2575fc;
+    --button-bg: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+    --button-bg-active: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+    --button-fg: #fff;
+    --button-fg-active: #fff;
+    --contrast-bg: #000;
+    --contrast-fg: #ffd700;
+    --font-size: 1rem;
+    --focus-outline: #ff512f;
+    --canvas-bg: #fff;
+    --canvas-shadow: 0 8px 24px rgba(0,0,0,0.09);
+}
+
+body {
+    background: var(--background);
+    color: var(--foreground);
+    font-size: var(--font-size);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    transition: background 0.5s, color 0.5s;
+}
+
+header {
+    padding: 1.5em 0 1em 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 0 0 0.5em 0;
+    font-size: 2.2em;
+    letter-spacing: 0.03em;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+    flex-wrap: wrap;
+}
+
+nav button {
+    background: var(--button-bg);
+    color: var(--button-fg);
+    border: none;
+    border-radius: 8px;
+    padding: 0.5em 1.2em;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin: 0.2em;
+    box-shadow: 0 2px 8px rgba(100,100,200,0.04);
+    transition: background 0.3s, color 0.3s, transform 0.15s;
+    outline: none;
+}
+
+nav button:focus, .viz-btn:focus, .start-btn:focus {
+    outline: 3px solid var(--focus-outline);
+    outline-offset: 2px;
+    z-index: 2;
+}
+
+.visualization-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1.5em;
+    margin: 2em 0 1em 0;
+}
+
+.viz-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--button-bg);
+    color: var(--button-fg);
+    border: none;
+    border-radius: 16px;
+    padding: 1em 2.2em;
+    font-size: 1.25em;
+    font-weight: 500;
+    box-shadow: 0 2px 12px rgba(100,100,200,0.08);
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, transform 0.15s;
+    outline: none;
+    min-width: 120px;
+}
+
+.viz-btn .icon {
+    font-size: 2em;
+    margin-bottom: 0.3em;
+}
+
+.viz-btn.active, .viz-btn[aria-pressed="true"] {
+    background: var(--button-bg-active);
+    color: var(--button-fg-active);
+    transform: scale(1.06);
+    box-shadow: 0 6px 20px rgba(255,81,47,0.12);
+}
+
+.viz-btn:hover:not(.active):not([aria-pressed="true"]) {
+    background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+}
+
+.mic-controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5em;
+}
+
+.start-btn {
+    background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 0.8em 2em;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(17,153,142,0.12);
+    transition: background 0.3s, transform 0.15s;
+    outline: none;
+}
+
+.start-btn.listening {
+    background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+}
+
+canvas {
+    display: block;
+    margin: 0 auto 2em auto;
+    background: var(--canvas-bg);
+    border-radius: 16px;
+    box-shadow: var(--canvas-shadow);
+    max-width: 95vw;
+    width: 900px;
+    height: 350px;
+}
+
+footer {
+    text-align: center;
+    padding: 1em 0;
+    font-size: 1em;
+    color: #888;
+}
+
+/* Dark Theme */
+body.dark {
+    --background: linear-gradient(135deg, #181818, #232526 90%);
+    --foreground: #f5f5f5;
+    --accent-gradient: linear-gradient(45deg, #1e90ff, #6a11cb);
+    --accent-solid: #1e90ff;
+    --button-bg: linear-gradient(90deg, #1e90ff 0%, #6a11cb 100%);
+    --button-bg-active: linear-gradient(90deg, #fc466b 0%, #3f5efb 100%);
+    --button-fg: #fff;
+    --button-fg-active: #fff;
+    --canvas-bg: #222;
+    --canvas-shadow: 0 8px 24px rgba(0,0,0,0.22);
+    --focus-outline: #ff512f;
+}
+
+/* High Contrast Theme */
+body.high-contrast {
+    --background: var(--contrast-bg);
+    --foreground: var(--contrast-fg);
+    --accent-gradient: #ffd700;
+    --accent-solid: #ffd700;
+    --button-bg: #000;
+    --button-bg-active: #ffd700;
+    --button-fg: #ffd700;
+    --button-fg-active: #000;
+    --canvas-bg: #000;
+    --canvas-shadow: 0 8px 24px #ffd700;
+    --focus-outline: #ffd700;
+}
+
+:focus-visible {
+    outline: 3px solid var(--focus-outline);
+    outline-offset: 2px;
+}
+
+@media (max-width: 700px) {
+    canvas {
+        width: 98vw;
+        height: 220px;
+    }
+    .visualization-controls {
+        flex-direction: column;
+        gap: 0.7em;
+    }
+}
